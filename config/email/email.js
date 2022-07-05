@@ -12,21 +12,23 @@ var models = initModels(sequelise);
 // Testing Emails Pattern
 // when testing emails, in NODE_ENV=development, set EMAIL_OVERRIDE
 // if EMAIL_OVERRIDE is set, send email to it's value, prepend subject line with [TEST EMAIL], include intended recipients in the body
-const emailTransport = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.WEBAPP_PASSWORD,
-  },
-});
+const emailTransport = nodemailer.createTransport(
+  {
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+      user: process.env.EMAIL_ADDRESS,
+      pass: process.env.WEBAPP_PASSWORD,
+    },
+  }
+);
 
 // test email connection and authentication
-console.log('Checking email connection and authentication');
-emailTransport
-  .verify()
-  .then(console.log('Success - email connects and authenticates.'))
-  .catch(console.error);
+// console.log('Checking email connection and authentication');
+// emailTransport
+//   .verify()
+//   .then(console.log('Success - email connects and authenticates.'))
+//   .catch(console.error);
 
 const customSendEmail = function (recipient, subject, body) {
   //check var
